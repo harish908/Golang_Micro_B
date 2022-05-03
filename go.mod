@@ -1,4 +1,4 @@
-module service
+module github.com/harish908/Golang_Micro_B
 
 go 1.15
 

@@ -3,13 +3,24 @@ syntax= "proto3";
 package health_check;
 option go_package = "/health_check";
 
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+
 message HealthCheckResponse{
     string connection=1;
 }
 
 service HealthCheckService{
-    rpc CheckGRPCConnection(HealthCheckResponse) returns (HealthCheckResponse){}
-} 
+    rpc CheckGRPCConnection(google.protobuf.Empty) returns (HealthCheckResponse){
+        option (google.api.http) = {
+			get: "/grpc/health"
+		};
+    }
+}
 
 // This command works without grpc gateway
 // protoc -I ./proto --go_out ./proto/gen --go-grpc_out ./proto/gen ./proto/definitions/health_check.proto
+
+// This works with gateway => download protobuf and store file location in envirnoment variables 
+// protoc -I ./proto --go_out ./proto/gen --go-grpc_out ./proto/gen --grpc-gateway_out ./proto/gen ./proto/definitions/health_check.proto

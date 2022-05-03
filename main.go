@@ -11,6 +11,11 @@ import (
 	"google.golang.org/grpc"
 )
 
+func main() {
+	runGRPCServer()
+	runHTTPServer()
+}
+
 func runHTTPServer() {
 	e := echo.New()
 	e.GET("/health", func(c echo.Context) error {
@@ -32,9 +37,4 @@ func runGRPCServer() {
 	if err != nil {
 		log.Fatalf("Server error: %v", err)
 	}
-}
-
-func main() {
-	runHTTPServer()
-	runGRPCServer()
 }

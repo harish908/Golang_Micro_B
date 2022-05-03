@@ -1,0 +1,15 @@
+syntax= "proto3";
+
+package health_check;
+option go_package = "/health_check";
+
+message HealthCheckResponse{
+    string connection=1;
+}
+
+service HealthCheckService{
+    rpc CheckGRPCConnection(HealthCheckResponse) returns (HealthCheckResponse){}
+} 
+
+// This command works without grpc gateway
+// protoc -I ./proto --go_out ./proto/gen --go-grpc_out ./proto/gen ./proto/definitions/health_check.proto

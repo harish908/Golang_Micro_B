@@ -22,5 +22,5 @@ service HealthCheckService{
 // This command works without grpc gateway
 // protoc -I ./proto --go_out ./proto/gen --go-grpc_out ./proto/gen ./proto/definitions/health_check.proto
 
-// This works with gateway => download protobuf and store file location in envirnoment variables 
-// protoc -I ./proto --go_out ./proto/gen --go-grpc_out ./proto/gen --grpc-gateway_out ./proto/gen ./proto/definitions/health_check.proto
+// This works with gateway => download protobuf and store file location in environment variables 
+// protoc -I ./proto --go_out ./proto/gen --go-grpc_out=require_unimplemented_servers=false:./proto/gen --grpc-gateway_out ./proto/gen ./proto/definitions/health_check.proto

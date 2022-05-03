@@ -44,21 +44,19 @@ func (c *healthCheckServiceClient) CheckGRPCConnection(ctx context.Context, in *
 }
 
 // HealthCheckServiceServer is the server API for HealthCheckService service.
-// All implementations must embed UnimplementedHealthCheckServiceServer
+// All implementations should embed UnimplementedHealthCheckServiceServer
 // for forward compatibility
 type HealthCheckServiceServer interface {
 	CheckGRPCConnection(context.Context, *emptypb.Empty) (*HealthCheckResponse, error)
-	mustEmbedUnimplementedHealthCheckServiceServer()
 }
 
-// UnimplementedHealthCheckServiceServer must be embedded to have forward compatible implementations.
+// UnimplementedHealthCheckServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedHealthCheckServiceServer struct {
 }
 
 func (UnimplementedHealthCheckServiceServer) CheckGRPCConnection(context.Context, *emptypb.Empty) (*HealthCheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckGRPCConnection not implemented")
 }
-func (UnimplementedHealthCheckServiceServer) mustEmbedUnimplementedHealthCheckServiceServer() {}
 
 // UnsafeHealthCheckServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to HealthCheckServiceServer will

@@ -13,7 +13,8 @@ import (
 
 func main() {
 	runGRPCServer()
-	runHTTPServer()
+	// can't expose 2 server ports
+	// runHTTPServer()
 }
 
 func runHTTPServer() {

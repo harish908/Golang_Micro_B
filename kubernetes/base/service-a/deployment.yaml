@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate 
+  template:
+    metadata:
+      labels:
+        service: service-a
+    spec:
+      containers:
+      - name: service-a
+        image: service-a
+        resources:
+          requests:
+            cpu: "1"
+            memory: "128Mi"
+          limits:
+            cpu: "2"
+            memory: "256Mi"
+        ports:
+          - containerPort: 80
+          - containerPort: 4001
+        readinessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /health
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 120
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /health?type=live
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 120
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservices-dev
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/harish908/Golang_Micro_B.git
+    targetRevision: main                                            # refers to master branch
+    path: kubernetes/dev
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: microservices
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true              # permission to create namespace
+
+    automated:
+      selfHeal: true                    # automatically sync from github
+      prune: true                       # delete 

@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: microservices
+
+commonLabels:
+  domain: microservices
+
+resources:
+  - domain/namespace.yaml
+  - service-b/deployment.yaml
+  - service-b/service.yaml
+  - service-b/gateway.yaml
+  - service-b/virtual-service.yaml
+  - service-a/deployment.yaml
+  - service-b/service.yaml
+  - service-b/gateway.yaml
+  - service-b/virtual-service.yaml

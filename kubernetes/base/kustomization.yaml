@@ -13,6 +13,6 @@ resources:
   - service-b/gateway.yaml
   - service-b/virtual-service.yaml
   - service-a/deployment.yaml
-  - service-b/service.yaml
-  - service-b/gateway.yaml
-  - service-b/virtual-service.yaml
+  - service-a/service.yaml
+  - service-a/gateway.yaml
+  - service-a/virtual-service.yaml

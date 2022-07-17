@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: service-b
-        image: service-b
+        image: hari98/service-b
         resources:
           requests:
             cpu: "1"
@@ -26,7 +26,7 @@ spec:
             memory: "256Mi"
         ports:
           - containerPort: 80
-          - containerPort: 4001
+          - containerPort: 5001
         readinessProbe:
           failureThreshold: 5
           httpGet:

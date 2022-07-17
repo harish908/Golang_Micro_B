@@ -10,9 +10,39 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /service-b
+        prefix: /microservices/service-b/
+    - uri:
+        exact: /microservices/service-b
+    rewrite:
+      uri: /
     route:
     - destination:
         host: service-b
         port:
-          number: 80
+          number: 5001
+    corsPolicy:
+      allowOrigins:
+      - exact: "*"
+      allowMethods:
+      - GET
+      - PUT
+      - POST
+      - DELETE 
+      - PATCH
+      - OPTIONS
+      allowCredentials: false
+      allowHeaders:
+      - Accept
+      - Accept-Language
+      - Accept-Encoding
+      - If-Modified-Since
+      - Content-Type
+      - Cache-Control
+      - Authorization
+      - Range
+      - Connection
+      - Host
+      - Origin
+      - User-Agent
+      - Referer 
+      - X-Requested-With
